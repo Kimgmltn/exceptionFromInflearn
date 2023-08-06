@@ -1,5 +1,6 @@
 package hello.exceptionfrominflearn.api;
 
+import hello.exceptionfrominflearn.exception.BadRequestException;
 import hello.exceptionfrominflearn.exception.UserException;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,9 +28,14 @@ public class ApiExceptionController {
         return new MemberDto(id, "hello" + id);
     }
 
+    @GetMapping("/api/response-status-ex1")
+    public String responseStatusEx1(){
+        throw new BadRequestException();
+    }
+
     @Data
     @AllArgsConstructor
-    static class MemberDto{
+    static class MemberDto {
         private String memberId;
         private String name;
     }
