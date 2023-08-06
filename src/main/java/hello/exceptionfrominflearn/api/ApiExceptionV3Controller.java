@@ -1,21 +1,22 @@
 package hello.exceptionfrominflearn.api;
 
-import hello.exceptionfrominflearn.exHandler.ErrorResult;
 import hello.exceptionfrominflearn.exception.BadRequestException;
 import hello.exceptionfrominflearn.exception.UserException;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 @Slf4j
 @RestController
-public class ApiExceptionV2Controller {
+public class ApiExceptionV3Controller {
 
-    @GetMapping("/api2/members/{id}")
+    @GetMapping("/api3/members/{id}")
     public MemberDto getMember(@PathVariable("id") String id) {
 
         if (id.equals("ex")) {
@@ -31,17 +32,17 @@ public class ApiExceptionV2Controller {
         return new MemberDto(id, "hello" + id);
     }
 
-    @GetMapping("/api2/response-status-ex1")
+    @GetMapping("/api3/response-status-ex1")
     public String responseStatusEx1(){
         throw new BadRequestException();
     }
 
-    @GetMapping("/api2/response-status-ex2")
+    @GetMapping("/api3/response-status-ex2")
     public String responseStatusEx2(){
         throw new ResponseStatusException(HttpStatus.NOT_FOUND, "error.bad", new IllegalArgumentException());
     }
 
-    @GetMapping("/api2/default-hadler-ex")
+    @GetMapping("/api3/default-hadler-ex")
     public String defaultException(@RequestParam Integer data) {
         return "ok";
     }
