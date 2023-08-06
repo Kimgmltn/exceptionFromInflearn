@@ -1,5 +1,6 @@
 package hello.exceptionfrominflearn.resolver;
 
+import hello.exceptionfrominflearn.exception.UserException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
@@ -21,6 +22,9 @@ public class MyHandlerExceptionResolver implements HandlerExceptionResolver {
                 log.info("IllegalArgumentException resolver to 400");
                 response.sendError(HttpServletResponse.SC_BAD_REQUEST, ex.getMessage());
                 return new ModelAndView();
+            }
+            if(ex instanceof UserException){
+
             }
         }catch (IOException e){
             log.error("resolver ex", e);

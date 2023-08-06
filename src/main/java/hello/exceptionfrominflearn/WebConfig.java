@@ -3,6 +3,7 @@ package hello.exceptionfrominflearn;
 import hello.exceptionfrominflearn.filter.LogFilter;
 import hello.exceptionfrominflearn.intercepter.LogIntercepter;
 import hello.exceptionfrominflearn.resolver.MyHandlerExceptionResolver;
+import hello.exceptionfrominflearn.resolver.UserHandlerExceptionResolver;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,6 +21,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void extendHandlerExceptionResolvers(List<HandlerExceptionResolver> resolvers) {
         resolvers.add(new MyHandlerExceptionResolver());
+        resolvers.add(new UserHandlerExceptionResolver());
     }
 
     @Override
